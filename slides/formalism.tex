@@ -1,0 +1,92 @@
+\Transcb{yellow}{blue}{Formalism of a Bayesian rate analysis}
+\onecolumn
+\begin{center}
+{\red The problem to be addressed} 
+\end{center}
+\begin{itemize}
+\item Cosmic rays impinge on the atmosphere of the Earth, producing a constant rate
+      of atmospheric high-energy neutrinos, homogeneously distributed over the celestial sphere.
+      We call these neutrinos (atmospheric) background.
+\item Astrophysical sources may yield an additional, constant high-energy neutrino rate at specific locations.
+      We call these neutrinos (cosmic) signal.
+\item[$\ast$] {\blue The essential questions :}
+\begin{itemize}
+\item Can we identify a possible signal by measurements ?
+\item Can we determine (a limit on) the source strength ?
+\item What is our degree of belief in the presence of a source ?
+\end{itemize}
+\item To investigate we study a certain patch on the sky over a time interval $\Delta t$.
+\item[] This will result in observing $n$ neutrinos.
+\item[$\ast$] All of the above is called our {\blue prior information $I$}.
+\item Note : {\red The following reasoning works also for stacked observations.}
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item Based on our prior information we know that the pdf for the number of\\
+      observed neutrinos $n$ is the Poisson distribution with constant rate $r$
+\item[] \begin{center} {\blue $\displaystyle p(n|rI)=\frac{(r\Delta t)^{n} e^{-r\Delta t}}{n!}$} \end{center}
+\item But : We actually want to determine the rate $r \rightarrow p(r|nI)$
+\end{itemize}
+%
+\begin{center}
+{\red Bayesian Logical Inference} 
+\end{center}
+\begin{itemize}
+\item Consider two {\red propositions $H$ and $D$} and some {\red prior information $I$}
+\item[] {\red Product rule : $p(HD|I)=p(H|I)p(D|HI)=p(D|I)p(H|DI)$}
+\item From the product rule we have : $p(H|I)p(D|HI)=p(D|I)p(H|DI)$
+\item[] which can be written as :
+\end{itemize}
+%
+\begin{center}
+{\red \shabox{$\displaystyle p(H|DI)=p(H|I)\,\frac{p(D|HI)}{p(D|I)}$}\\[5mm]
+ (Theorem of Bayes)}
+\end{center}
+
+\Tr
+\begin{itemize}
+\item The Bayes theorem directly yields {\blue $\displaystyle p(r|nI)=p(r|I)\,\frac{p(n|rI)}{p(n|I)}$}
+\item[] $p(r|I)$ is some prior pdf for the rate
+\item[] $p(n|rI)$ is the Poisson pdf from before
+\item[] $p(n|I)$ is some normalisation which can be determined as follows :
+\item[] $\int p(r|nI)\,\d r = 1 \rightarrow {\blue p(n|I)=\int p(r|I)\,p(n|rI)\,\d r}$
+\item[$\ast$] But : {\red The rate $r$ consists of independent signal and background $\rightarrow r=r_{s}+r_{b}$}
+\item[] So we get : {\blue $\displaystyle p(r_{s}r_{b}|nI)=p(r_{s}r_{b}|I)\,\frac{p(n|r_{s}r_{b}\,I)}{p(n|I)}$}
+\item[] where : {\blue $\displaystyle p(n|r_{s}r_{b}\,I)=\frac{([r_{s}+r_{b}]\Delta t)^{n} e^{-[r_{s}+r_{b}]\Delta t}}{n!}$}
+        (Poisson for rate $r=[r_{s}+r_{b}]$)
+\item[] Product rule : $p(r_{s}r_{b}|I)=p(r_{b}|I)p(r_{s}|r_{b}\,I)=p(r_{b}|I)p(r_{s}|I)$
+\begin{itemize}
+\item[] $p(r_{b}|I)$ is some prior pdf for the bkg rate (e.g. $p(r_{b}|n_{b}\,I)$ from off-source) 
+\item[] $p(r_{s}|I)$ is some prior pdf for the signal rate (e.g. based on previous limits) 
+\end{itemize}
+\item Similar as above : {\blue $p(n|I)=\int p(r_{b}|I)\,p(r_{s}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}\,\d r_{s}$}
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item Conclusion :
+\item[] {\blue Given some priors $p(r_{b}|I)$ and $p(r_{s}|I)$ we can determine $p(r_{s}r_{b}|nI)$}
+\item[] But : {\red We want to determine the pure signal rate $p(r_{s}|nI)$}
+\item[$\ast$] Thanks to the Bayesian logic : {\blue Marginalisation}
+\item[] Without loss of statistical information : {\blue $p(r_{s}|nI)=\int p(r_{s}r_{b}|nI)\,\d r_{b}$}
+\item[] \colorbox{yellow}{We can determine the full posterior signal rate pdf $p(r_{s}|nI)$ from data alone}
+\item {\blue Going to credible regions, upper limits and all that}
+\item[$\ast$] x\% credibility region for $r_{s}$ : $\displaystyle \int_{r_{min}}^{r_{max}} p(r_{s}|nI)\,\d r_{s}=$ x\%
+\item[] with $r_{min} < \hat{r}_{s} < r_{max}$ and $p(r_{min}|nI)=p(r_{max}|nI)$ 
+\item[] $\rightarrow r_{min}$ and $r_{max}$ form the x\% credibility region of the signal rate $r_{s}$
+\item[$\ast$] x\% upper limit for $r_{s}$ : $\displaystyle \int_{0}^{r_{max}} p(r_{s}|nI)\,\d r_{s}=$ x\%
+\item[] $\rightarrow r_{max}$ is the x\% credible upper limit for the signal rate $r_{s}$
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item {\blue Decision between credibility region or upper limit}
+\item[] Degree of belief in signal presence via hypothesis testing c.q. $\psi$ value
+\item[] (NvE, Astroparticle Physics 28 (2008) 540)
+\item {\blue Going from signal rate $r_{s}$ to a source flux value $\Phi_{s}$}
+\item[] Just plug in the {\red Effective Area} ($A_{eff}$)
+\item[] $A_{eff} \equiv$ observed event rate~/~incoming flux $\quad$ (from simulations)
+\item[] which yields : $\Phi_{s}=r_{s}~/~A_{eff} \rightarrow {\blue p(\Phi_{s}|nI)=p(r_{s}|nI)~/~A_{eff}}$
+\item[] \colorbox{yellow}{We get the full posterior source flux pdf $p(\Phi_{s}|nI)$ directly from $p(r_{s}|nI)$}
+\end{itemize}

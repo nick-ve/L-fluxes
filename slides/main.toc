@@ -1,0 +1,3 @@
+\contentsline {section}{Source Strength and Fluxes\vspace *{-10mm}}{1}
+\contentsline {section}{Formalism of a Bayesian rate analysis\vspace *{-10mm}}{6}
+\contentsline {section}{Working out the mathematics\vspace *{-10mm}}{11}

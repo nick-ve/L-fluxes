@@ -1,0 +1,165 @@
+\Transcb{yellow}{blue}{Working out the mathematics}
+\onecolumn
+\begin{center}
+{\red The total signal and background rate}
+\end{center}
+%
+\begin{itemize}
+\item To summarise the previous we have
+\item[] \begin{center}{\blue $\displaystyle p(r_{s}r_{b}|nI)=p(r_{b}|I)\,p(r_{s}|I)\,\frac{p(n|r_{s}r_{b}\,I)}{p(n|I)}$}\end{center}
+\item[] consisting of the following contributions :
+\item[] $p(r_{b}|I)$ is some (prior) pdf for the background rate
+\item[] $p(r_{s}|I)$ is some prior pdf for the signal rate
+\item[] $\displaystyle p(n|r_{s}r_{b}\,I)=\frac{([r_{s}+r_{b}]\Delta t)^{n} e^{-[r_{s}+r_{b}]\Delta t}}{n!} \quad$
+        (Poisson for rate $r=[r_{s}+r_{b}]$)
+\item[] $p(n|I)=\int p(r_{b}|I)\,p(r_{s}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}\,\d r_{s}$
+\item[$\ast$] And the pure (i.e. background independent) signal rate is given by 
+\item[] \begin{center}{\blue $p(r_{s}|nI)=\int p(r_{s}r_{b}|nI)\,\d r_{b}$}\end{center}
+\end{itemize}
+
+\Tr
+\begin{center}
+{\red Background rate determination} 
+\end{center}
+%
+\begin{itemize}
+\item The background rate pdf can be obtained via an "off-source" measurement\\
+      observing $n_{o}$ (background) events over a certain time period $t_{o}$
+\item Note : This measurement is different from the actual "on-source" one
+\item[] $\rightarrow$ Different prior information $I_{o}$
+\item From the previous we have :
+        {\blue $\displaystyle p(r_{b}|n_{o}\,I_{o})=p(r_{b}|I_{0})\,\frac{p(n_{o}|r_{b}\,I_{o})}{p(n_{o}|I_{o})}$}
+\item[] {\blue $\displaystyle p(n_{o}|r_{b}\,I_{o})=\frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!} \quad$}
+        (Off-source bkg Poisson pdf)
+\item[] $p(r_{b}|I_{o})$ is some prior pdf for the background rate
+\item[] $p(n_{o}|I_{o})=\int p(r_{b}|I_{o})\,p(n_{o}|r_{b}\,I_{o})\,\d r_{b}$
+\item[$\ast$] So we have {\blue $\displaystyle p(n_{o}|I_{o})=\int p(r_{b}|I_{o})\,
+        \frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!}\,\d r_{b}$}
+\item[] $\rightarrow$ Specification of the prior $p(n_{o}|I_{o})$ yields the bkg rate pdf $p(r_{b}|n_{o}\,I_{o})$
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item[] \begin{center}{\blue The background rate prior $p(r_{b}|I_{o})$}\end{center}
+\item[] Since $r_{b} \geq 0$ it qualifies as a scale parameter $\rightarrow$ Jeffrey's prior
+\item[] \begin{center}$\displaystyle p(r_{b}|I_{o})=\frac{1}{r_{b}\,\ln\left[r_{bmax}/r_{bmin}\right]}$\end{center}
+\item[] But ... $r_{b}$ may vanish $\rightarrow r_{bmin}=0$
+\item[$\ast$] Use modified Jeffrey's prior : 
+        {\blue $\displaystyle p(r_{b}|I_{o})=\frac{1}{(\beta+r_{b})\,\ln\left[(\beta+r_{bmax})/\beta\right]}$}
+\item[] where $\beta$ is a constant
+\item[] This behaves as a uniform prior for $r_{b}<\beta$ and a Jeffrey's prior for $r_{b} \geq \beta$
+\item So we get :
+\item[] {\blue $\displaystyle p(n_{o}|I_{o})=\int_{0}^{r_{bmax}}
+        \frac{1}{(\beta+r_{b})\,\ln\left[(\beta+r_{bmax})/\beta\right]}\,
+        \frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!}\,\d r_{b}$}\\
+\item[] {\red Exact but complicated integral : Analytical expression ?}
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item Try with the simpler uniform prior : $\displaystyle p(r_{b}|I_{o})=\frac{1}{r_{bmax}-r_{bmin}}$
+\item[] As mentioned before $\displaystyle r_{bmin}=0 \rightarrow {\blue p(r_{b}|I_{o})=\frac{1}{r_{bmax}}}$\\
+\item[] Which yields :  {\blue $\displaystyle p(n_{o}|I_{o})=\int_{0}^{r_{bmax}}
+                         \frac{1}{r_{bmax}}
+                         \frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!}\,\d r_{b}$}
+\item[$\ast$] Note : $\displaystyle \int_{0}^{x} y^{n} e^{-y}\,\d y=\gamma(n+1,x) \quad$ (incomplete gamma function)\\
+\item[] So we get : {\blue $\displaystyle p(n_{o}|I_{o})=\frac{\gamma(n_{o}+1,r_{bmax}\,t_{o})}{r_{bmax}\,t_{o}\,n_{o}!}$}
+\item[] which finally yields for the posterior background rate pdf :
+\item[] \begin{center}
+        {\blue $\displaystyle p(r_{b}|n_{o}\,I_{o})=
+                \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}$}
+        \end{center}
+\item[$\ast$] Note : If $r_{bmax}\,t_{o} \gg n_{o}$ then $\gamma(n_{o}+1,r_{bmax}\,t_{o}) \approx \Gamma(n_{o}+1)=n_{o}!$
+\end{itemize}
+
+\Tr
+\begin{center}
+{\red The signal and background rate of the actual "on-source" observation} 
+\end{center}
+%
+\begin{itemize}
+\item In the actual "on-source" measurement we observe a total of $n$ events\\
+      over a certain time period $t$
+\item[] \colorbox{yellow}{Knowledge of the "off-source" measurement is part of the prior info $I$ !}
+\item[] Recall :
+        {\blue $\displaystyle p(r_{s}r_{b}|nI)=p(r_{b}|I)\,p(r_{s}|I)\,\frac{p(n|r_{s}r_{b}\,I)}{p(n|I)}$}
+\item[] $p(r_{b}|I)$ is some (prior) pdf for the background rate
+\item[$\ast$] {\red Use the "off-source" posterior pdf :}
+              {\blue $\displaystyle p(r_{b}|I)=
+               \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}$}
+\item[] $p(r_{s}|I)$ is some prior pdf for the signal rate
+\item[] {\blue $\displaystyle p(n|r_{s}r_{b}\,I)=\frac{([r_{s}+r_{b}] t)^{n} e^{-[r_{s}+r_{b}] t}}{n!} \quad$}
+        (Poisson for rate $r=[r_{s}+r_{b}]$)
+\item[] $\rightarrow {\blue \displaystyle p(n|I)=\int p(r_{s}|I)\,
+                       \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}\,
+                       \frac{([r_{s}+r_{b}] t)^{n} e^{-[r_{s}+r_{b}] t}}{n!}
+                       \,\d r_{b}\,\d r_{s}}$
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item[] \begin{center}{\blue The signal rate prior $p(r_{s}|I)$}\end{center}
+\item[] Similar approach as for the background "off-source" case
+\item Modified Jeffrey's prior : 
+        {\blue $\displaystyle p(r_{s}|I)=\frac{1}{(\sigma+r_{s})\,\ln\left[(\sigma+r_{smax})/\sigma\right]}$}
+\item[] where $\sigma$ is a constant
+\item[] {\red Again a complicated integral for $p(n|I)$ : Analytical expression ?}
+\item Uniform prior : {\blue $\displaystyle p(r_{s}|I)=\frac{1}{r_{smax}} \quad$} which yields
+\item[] {\blue $\displaystyle p(n|I)=\int_{0}^{r_{smax}}\int_{0}^{r_{bmax}}
+                       \frac{1}{r_{smax}}\,
+                       \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}\,
+                       \frac{([r_{s}+r_{b}] t)^{n} e^{-[r_{s}+r_{b}] t}}{n!}
+                       \,\d r_{b}\,\d r_{s}$}
+\item[] Evaluation of this integral allows to determine $p(r_{s}r_{b}|nI)$
+\item[$\ast$] {\red BUT ... our interest is the pure (bkg independent) signal rate}
+\item[] \begin{center}
+        {\blue $\displaystyle p(r_{s}|nI)=\int_{0}^{r_{bmax}} p(r_{s}r_{b}|nI)\,\d b
+        =\frac{\int_{0}^{r_{bmax}} p(r_{b}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}}{r_{smax}\,p(n|I)}$}
+        \end{center}
+\item[] Ratio of similar integrals for $p(r_{s}|nI)$ can be solved
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item Writing {\blue $p(r_{s}|nI) \equiv A/B$} we have as expressions :
+\item[] $\displaystyle A=\int_{0}^{r_{bmax}} (r_{b})^{n_{o}}\,e^{-r_{b}\,t_{o}}\,(r_{s}+r_{b})^{n}\,e^{-(r_{s}+r_{b})\,t}\,\d r_{b}$
+\item[] $\displaystyle B=\int_{0}^{r_{smax}}\int_{0}^{r_{bmax}}
+                         (r_{b})^{n_{o}}\,e^{-r_{b}\,t_{o}}\,(r_{s}+r_{b})^{n}\,e^{-(r_{s}+r_{b})\,t}\,\d r_{b}\,\d r_{s}
+                         =\int_{0}^{r_{smax}} A\,\d r_{s}$
+\item Binomial expansion : $\displaystyle (r_{s}+r_{b})^n=\sum_{i=0}^{i=n} \frac{n!}{i!\,(n-i)!}\, (r_{s})^{i}\,(r_{b})^{(n-i)}$
+\item[] which yields :
+        $\displaystyle A=\sum_{i=0}^{i=n} \frac{n!}{i!\,(n-i)!}\, (r_{s})^{i}\,e^{-r_{s}\,t}
+         \int_{0}^{r_{bmax}} (r_{b})^{n+n_{o}-i}\,e^{-r_{b}(t+t_{o})}\,\d r_{b}$
+\item[] $\displaystyle \rightarrow A=\sum_{i=0}^{i=n} \frac{n!}{i!\,(n-i)!}\, (r_{s})^{i}\,e^{-r_{s}\,t}
+         \,\frac{\gamma([n+n_{o}-i+1],r_{bmax}[t+t_{o}])}{(t+t_{o})^{(n+n_{o}-i+1)}}$
+\item[$\ast$] {\blue $\displaystyle A=\frac{n!\,e^{-r_{s}\,t}}{(t+t_{o})^{(n+n_{o}+1)}}
+         \,\sum_{i=0}^{i=n} \frac{(r_{s})^{i}\,(t+t_{o})^{i}\,\gamma([n+n_{o}-i+1],r_{bmax}[t+t_{o}])}{i!\,(n-i)!}$}
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item The expression for $\displaystyle B=\int_{0}^{r_{smax}} A\,\d r_{s}$ will then become
+\item[] $\displaystyle B=\frac{n!}{(t+t_{o})^{(n+n_{o}+1)}}$
+\item[] $\displaystyle \quad \times \sum_{j=0}^{j=n} \frac{(t+t_{o})^{j}\,\gamma([n+n_{o}-j+1],r_{bmax}[t+t_{o}])}{j!\,(n-j)!}
+         \,\int_{0}^{r_{smax}} (r_{s})^{j}\,e^{-r_{s}\,t}\,\d r_{s}$
+\item[] $\displaystyle \rightarrow {\blue B=\frac{n!}{(t+t_{o})^{(n+n_{o}+1)}}}$
+\item[] {\blue $\displaystyle \qquad \times \sum_{j=0}^{j=n} \frac{(t+t_{o})^{j}\,\gamma([n+n_{o}-j+1],r_{bmax}[t+t_{o}])}{j!\,(n-j)!\,t^{j+1}}
+         \,\gamma(j+1,r_{smax}\,t)$}
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item So this finally yields for the pure (bkg independent) signal rate pdf
+\item[] \begin{center}
+      {\blue \shabox{$\displaystyle p(r_{s}|nI)=
+      \frac{t\,e^{-r_{s}\,t}\,\sum_{i=0}^{i=n} \frac{(r_{s})^{i}\,(t+t_{o})^{i}\,\gamma([n+n_{o}-i+1],r_{bmax}[t+t_{o}])}{i!\,(n-i)!}}
+      {\sum_{j=0}^{j=n} \frac{(1+\frac{t_{o}}{t})^{j}\,\gamma([n+n_{o}-j+1],r_{bmax}[t+t_{o}])\,\gamma(j+1,r_{smax}\,t)}
+                             {j!\,(n-j)!}}$}}
+        \end{center}
+\item[] Note that :
+\item[$\ast$] $r_{smax}$ may be obtained from an existing upper limit on the signal rate (or flux)
+              determined in a previous measurement
+\item[$\ast$] In the case that $r_{bmax}[t+t_{o}] \gg n+n_{o}$\\
+      we have $\gamma([n+n_{o}-i+1,r_{bmax}[t+t_{o}]) \approx (n+n_{o}-i)!$\\
+      and $\gamma([n+n_{o}-j+1,r_{bmax}[t+t_{o}]) \approx (n+n_{o}-j)!$
+\end{itemize}
