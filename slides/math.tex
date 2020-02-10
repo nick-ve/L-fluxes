@@ -12,7 +12,7 @@
 \item[] $p(r_{s}|I)$ is some prior pdf for the signal rate
 \item[] $\displaystyle p(n|r_{s}r_{b}\,I)=\frac{([r_{s}+r_{b}]\Delta t)^{n} e^{-[r_{s}+r_{b}]\Delta t}}{n!} \quad$
         (Poisson for rate $r=[r_{s}+r_{b}]$)
-\item[] $p(n|I)=\int p(r_{b}|I)\,p(r_{s}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}\,\d r_{s}$
+\item[] $p(n|I)=\int \int p(r_{b}|I)\,p(r_{s}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}\,\d r_{s}$
 \item[$\ast$] And the pure (i.e. background independent) signal rate is given by 
 \item[] \begin{center}{\blue $p(r_{s}|nI)=\int p(r_{s}r_{b}|nI)\,\d r_{b}$}\end{center}
 \end{itemize}
@@ -28,14 +28,14 @@
 \item Note : This measurement is different from the actual "on-source" one
 \item[] $\rightarrow$ Different prior information $I_{o}$
 \item From the previous we have :
-        {\blue $\displaystyle p(r_{b}|n_{o}\,I_{o})=p(r_{b}|I_{0})\,\frac{p(n_{o}|r_{b}\,I_{o})}{p(n_{o}|I_{o})}$}
+        {\blue $\displaystyle p(r_{b}|n_{o}\,I_{o})=p(r_{b}|I_{o})\,\frac{p(n_{o}|r_{b}\,I_{o})}{p(n_{o}|I_{o})}$}
 \item[] {\blue $\displaystyle p(n_{o}|r_{b}\,I_{o})=\frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!} \quad$}
         (Off-source bkg Poisson pdf)
 \item[] $p(r_{b}|I_{o})$ is some prior pdf for the background rate
 \item[] $p(n_{o}|I_{o})=\int p(r_{b}|I_{o})\,p(n_{o}|r_{b}\,I_{o})\,\d r_{b}$
 \item[$\ast$] So we have {\blue $\displaystyle p(n_{o}|I_{o})=\int p(r_{b}|I_{o})\,
         \frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!}\,\d r_{b}$}
-\item[] $\rightarrow$ Specification of the prior $p(n_{o}|I_{o})$ yields the bkg rate pdf $p(r_{b}|n_{o}\,I_{o})$
+\item[] $\rightarrow$ \colorbox{yellow}{Specification of the prior $p(r_{b}|I_{o})$ yields the bkg rate pdf $p(r_{b}|n_{o}\,I_{o})$}
 \end{itemize}
 
 \Tr
@@ -64,10 +64,10 @@
                          \frac{(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{n_{o}!}\,\d r_{b}$}
 \item[$\ast$] Note : $\displaystyle \int_{0}^{x} y^{n} e^{-y}\,\d y=\gamma(n+1,x) \quad$ (incomplete gamma function)\\
 \item[] So we get : {\blue $\displaystyle p(n_{o}|I_{o})=\frac{\gamma(n_{o}+1,r_{bmax}\,t_{o})}{r_{bmax}\,t_{o}\,n_{o}!}$}
-\item[] which finally yields for the posterior background rate pdf :
+\item[] which finally yields for the \colorbox{yellow}{posterior background rate pdf}
 \item[] \begin{center}
-        {\blue $\displaystyle p(r_{b}|n_{o}\,I_{o})=
-                \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}$}
+        {\blue \shabox{$\displaystyle p(r_{b}|n_{o}\,I_{o})=
+                \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}$}}
         \end{center}
 \item[$\ast$] Note : If $r_{bmax}\,t_{o} \gg n_{o}$ then $\gamma(n_{o}+1,r_{bmax}\,t_{o}) \approx \Gamma(n_{o}+1)=n_{o}!$
 \end{itemize}
@@ -90,7 +90,7 @@
 \item[] $p(r_{s}|I)$ is some prior pdf for the signal rate
 \item[] {\blue $\displaystyle p(n|r_{s}r_{b}\,I)=\frac{([r_{s}+r_{b}] t)^{n} e^{-[r_{s}+r_{b}] t}}{n!} \quad$}
         (Poisson for rate $r=[r_{s}+r_{b}]$)
-\item[] $\rightarrow {\blue \displaystyle p(n|I)=\int p(r_{s}|I)\,
+\item[] $\rightarrow {\blue \displaystyle p(n|I)=\int \int p(r_{s}|I)\,
                        \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}\,
                        \frac{([r_{s}+r_{b}] t)^{n} e^{-[r_{s}+r_{b}] t}}{n!}
                        \,\d r_{b}\,\d r_{s}}$
@@ -149,7 +149,7 @@
 
 \Tr
 \begin{itemize}
-\item So this finally yields for the pure (bkg independent) signal rate pdf
+\item So this finally yields for the \colorbox{yellow}{posterior signal rate pdf}
 \item[] \begin{center}
       {\blue \shabox{$\displaystyle p(r_{s}|nI)=
       \frac{t\,e^{-r_{s}\,t}\,\sum_{i=0}^{i=n} \frac{(r_{s})^{i}\,(t+t_{o})^{i}\,\gamma([n+n_{o}-i+1],r_{bmax}[t+t_{o}])}{i!\,(n-i)!}}
@@ -157,6 +157,7 @@
                              {j!\,(n-j)!}}$}}
         \end{center}
 \item[] Note that :
+\item[$\ast$] To obtain good prior coverage $r_{bmax}$ and $r_{smax}$ should be chosen large enough
 \item[$\ast$] $r_{smax}$ may be obtained from an existing upper limit on the signal rate (or flux)
               determined in a previous measurement
 \item[$\ast$] In the case that $r_{bmax}[t+t_{o}] \gg n+n_{o}$\\

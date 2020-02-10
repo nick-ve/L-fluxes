@@ -60,7 +60,7 @@
 \item[] $p(r_{b}|I)$ is some prior pdf for the bkg rate (e.g. $p(r_{b}|n_{b}\,I)$ from off-source) 
 \item[] $p(r_{s}|I)$ is some prior pdf for the signal rate (e.g. based on previous limits) 
 \end{itemize}
-\item Similar as above : {\blue $p(n|I)=\int p(r_{b}|I)\,p(r_{s}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}\,\d r_{s}$}
+\item Similar as above : {\blue $p(n|I)=\int \int p(r_{b}|I)\,p(r_{s}|I)\,p(n|r_{s}r_{b}\,I)\,\d r_{b}\,\d r_{s}$}
 \end{itemize}
 
 \Tr
@@ -72,10 +72,10 @@
 \item[] Without loss of statistical information : {\blue $p(r_{s}|nI)=\int p(r_{s}r_{b}|nI)\,\d r_{b}$}
 \item[] \colorbox{yellow}{We can determine the full posterior signal rate pdf $p(r_{s}|nI)$ from data alone}
 \item {\blue Going to credible regions, upper limits and all that}
-\item[$\ast$] x\% credibility region for $r_{s}$ : $\displaystyle \int_{r_{min}}^{r_{max}} p(r_{s}|nI)\,\d r_{s}=$ x\%
+\item[$\ast$] x\% credibility region $[r_{min},r_{max}]$ for $r_{s}$ : $\displaystyle \int_{r_{min}}^{r_{max}} p(r_{s}|nI)\,\d r_{s}=$ x\%
 \item[] with $r_{min} < \hat{r}_{s} < r_{max}$ and $p(r_{min}|nI)=p(r_{max}|nI)$ 
 \item[] $\rightarrow r_{min}$ and $r_{max}$ form the x\% credibility region of the signal rate $r_{s}$
-\item[$\ast$] x\% upper limit for $r_{s}$ : $\displaystyle \int_{0}^{r_{max}} p(r_{s}|nI)\,\d r_{s}=$ x\%
+\item[$\ast$] x\% upper limit $r_{max}$ for $r_{s}$ : $\displaystyle \int_{0}^{r_{max}} p(r_{s}|nI)\,\d r_{s}=$ x\%
 \item[] $\rightarrow r_{max}$ is the x\% credible upper limit for the signal rate $r_{s}$
 \end{itemize}
 
@@ -83,10 +83,15 @@
 \begin{itemize}
 \item {\blue Decision between credibility region or upper limit}
 \item[] Degree of belief in signal presence via hypothesis testing c.q. $\psi$ value
-\item[] (NvE, Astroparticle Physics 28 (2008) 540)
-\item {\blue Going from signal rate $r_{s}$ to a source flux value $\Phi_{s}$}
+\item[] (NvE, Astroparticle Physics 28 (2008) 540, arXiv:astro-ph/0702029)
+\item[] See also my lectures on "Logical Data Analaysis" 
+\item {\blue Going from an observed signal rate $r_{s}$ to an incoming flux value $F_{s}$}
 \item[] Just plug in the {\red Effective Area} ($A_{eff}$)
 \item[] $A_{eff} \equiv$ observed event rate~/~incoming flux $\quad$ (from simulations)
-\item[] which yields : $\Phi_{s}=r_{s}~/~A_{eff} \rightarrow {\blue p(\Phi_{s}|nI)=p(r_{s}|nI)~/~A_{eff}}$
-\item[] \colorbox{yellow}{We get the full posterior source flux pdf $p(\Phi_{s}|nI)$ directly from $p(r_{s}|nI)$}
+\item[] which yields : $\displaystyle F_{s}=\frac{r_{s}}{A_{eff}}
+        \rightarrow {\blue p(F_{s}|nI)=\frac{p(r_{s}|nI)}{A_{eff}}}$
+\item[] \colorbox{yellow}{We get the full posterior source flux pdf $p(F_{s}|nI)$ directly from $p(r_{s}|nI)$}
+\item {\blue Derivation of the (distance independent) source intensity $I_{s}$}
+\item[] In case the solid angle $\Omega_{s}$ of the source can be determined :
+        $\displaystyle I_{s}=\frac{F_{s}}{\Omega_{s}}$ 
 \end{itemize}

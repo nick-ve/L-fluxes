@@ -1,0 +1,63 @@
+\Transcb{yellow}{blue}{Summary}
+\onecolumn
+\begin{center}
+{\red Background rate determination} 
+\end{center}
+%
+\begin{itemize}
+\item The background rate $r_{b}$ can be obtained via an "off-source" measurement\\
+      observing $n_{o}$ (background) events over a certain time period $t_{o}$
+\item[] \begin{center}
+        \colorbox{yellow}{Posterior background rate pdf}\\[1mm]
+        {\blue \shabox{$\displaystyle p(r_{b}|n_{o},t_{o})=
+                \frac{t_{o}\,(r_{b}\,t_{o})^{n_{o}} e^{-r_{b}\,t_{o}}}{\gamma(n_{o}+1,r_{bmax}\,t_{o})}$}}
+        \end{center}
+\item[$\ast$] For good prior coverage $r_{bmax}$ should be chosen large enough
+\item[$\ast$] If $r_{bmax}\,t_{o} \gg n_{o}$ then $\gamma(n_{o}+1,r_{bmax}\,t_{o}) \approx \Gamma(n_{o}+1)=n_{o}!$
+\item {\blue See function GetBackgroundRatePDF() of the NcAstrolab facility}
+\item[] {\blue in the NCFS-Pack analysis framework (https://nick-ve.github.io/ncfs/docs)}
+\end{itemize}
+
+\Tr
+\begin{itemize}
+\item[] \begin{center}{\red Signal rate determination}\end{center}
+\item In the actual "on-source" measurement we observe a total of $n$ events\\
+      over a certain time period $t$
+\item[] Together with the "off-source" measurement $(n_{o},t_{0})$ this yields
+\item[] \begin{center}
+        \colorbox{yellow}{Posterior signal rate pdf}\\[1mm]
+      {\blue \shabox{$\displaystyle p(r_{s}|n,t,n_{o},t_{o})=
+      \frac{t\,e^{-r_{s}\,t}\,\sum_{i=0}^{i=n} \frac{(r_{s})^{i}\,(t+t_{o})^{i}\,\gamma([n+n_{o}-i+1],r_{bmax}[t+t_{o}])}{i!\,(n-i)!}}
+      {\sum_{j=0}^{j=n} \frac{(1+\frac{t_{o}}{t})^{j}\,\gamma([n+n_{o}-j+1],r_{bmax}[t+t_{o}])\,\gamma(j+1,r_{smax}\,t)}
+                             {j!\,(n-j)!}}$}}
+        \end{center}
+\item[$\ast$] $r_{smax}$ may be obtained from an existing upper limit on the signal rate (or flux)
+\item[$\ast$] In the case that $r_{bmax}[t+t_{o}] \gg n+n_{o}$\\
+      we have $\gamma([n+n_{o}-i+1,r_{bmax}[t+t_{o}]) \approx (n+n_{o}-i)!$\\
+      and $\gamma([n+n_{o}-j+1,r_{bmax}[t+t_{o}]) \approx (n+n_{o}-j)!$
+\item {\blue See function GetSignalRatePDF() of the NcAstrolab facility}
+\item[] {\blue in the NCFS-Pack analysis framework (https://nick-ve.github.io/ncfs/docs)}
+\end{itemize}
+
+\Tr
+\begin{center}
+{\red Going from the observed signal rate pdf to an incoming flux pdf}
+\end{center}
+%
+\begin{itemize}
+\item Just plug in the {\blue Effective Area} ($A_{eff}$)
+\item[] \begin{center}
+        \colorbox{yellow}{Posterior flux pdf}\\[1mm]
+        {\blue \shabox{$\displaystyle p(F_{s}|n,t,n_{o},t_{o})=\frac{p(r_{s}|n,t,n_{o},t_{o})}{A_{eff}}$}}
+        \end{center}
+\end{itemize}
+%
+\begin{center}
+{\red Credibility Region and Upper Limit determination}
+\end{center}
+%
+\begin{itemize}
+\item Can be directly determined from the signal pdf $p(r_{s}|n,t,n_{o},t_{o})$
+\item {\blue See GetCredibleInterval() and GetUpperLimit() of the NcAstrolab facility}
+\item[] {\blue in the NCFS-Pack analysis framework (https://nick-ve.github.io/ncfs/docs)}
+\end{itemize}
